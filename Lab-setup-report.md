@@ -46,7 +46,7 @@ Command used:
 ifconfig
 
 
-![Metasploitable IP](images/metasploitable-ip.png)
+![Metasploitable machine](images/Metasploitable_machine.png)
 
 Observation:
 Metasploitable was successfully configured in the same subnet as Kali Linux.
@@ -61,7 +61,7 @@ To verify communication between attacker and target:
 ping 192.168.1.15
 
 
-![Ping Test](images/ping-test.png)
+![Ping Test](images/Ping-test.png)
 
 Observation:
 Successful ICMP replies confirmed proper network connectivity.
@@ -162,3 +162,4 @@ This lab successfully demonstrated:
 - Practical encryption and decryption using OpenSSL
 
 The lab provides a strong foundation for advanced penetration testing and cybersecurity analysis.
+
