@@ -51,6 +51,9 @@ Command used:
 Observation:
 Metasploitable was successfully configured in the same subnet as Kali Linux.
 
+    Kali Linux IP Address: 192.168.X.X  
+    Metasploitable IP Address: 192.168.X.X
+
 ---
 
 # 3. Connectivity Verification
@@ -162,6 +165,7 @@ This lab successfully demonstrated:
 - Practical encryption and decryption using OpenSSL
 
 The lab provides a strong foundation for advanced penetration testing and cybersecurity analysis.
+
 
 
 
