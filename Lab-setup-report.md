@@ -43,7 +43,7 @@ Kali Linux was assigned a valid IP address in the Host-Only network range.
 
 Command used:
 
-ifconfig
+    ifconfig
 
 
 ![Metasploitable machine](images/Metasploitable_machine.png)
@@ -58,7 +58,7 @@ Metasploitable was successfully configured in the same subnet as Kali Linux.
 To verify communication between attacker and target:
 
 
-ping 192.168.1.15
+    ping <target-ip>
 
 
 ![Ping Test](images/Ping-test.png)
@@ -73,7 +73,7 @@ Successful ICMP replies confirmed proper network connectivity.
 ## Basic Port Scan
 
 
-nmap 192.168.1.15
+    nmap <target-ip>
 
 
 ![Nmap Basic Scan](images/nmap-basic.png)
@@ -86,7 +86,7 @@ Multiple open ports were identified on the target machine.
 ## Service Version Detection
 
 
-nmap -sV 192.168.1.15
+    nmap -sV <target-ip>
 
 
 ![Nmap Version Scan](images/nmap-version.png)
@@ -110,7 +110,7 @@ Wireshark was used to analyze network traffic.
 
 Filter applied:
 
-http
+    http
 
 
 ![Wireshark HTTP Capture](images/wireshark-http.png)
@@ -129,19 +129,19 @@ This demonstrates:
 ## Step 1 – Create a File
 
 
-echo "This is a secret message for Task-1" > secret.txt
+    echo "This is a secret message for Task-1" > secret.txt
 
 
 ## Step 2 – Encrypt the File
 
 
-openssl enc -aes-256-cbc -in secret.txt -out encrypted.txt
+    openssl enc -aes-256-cbc -in secret.txt -out encrypted.txt
 
 
 ## Step 3 – Decrypt the File
 
 
-openssl enc -aes-256-cbc -d -in encrypted.txt -out decrypted.txt
+    openssl enc -aes-256-cbc -d -in encrypted.txt -out decrypted.txt
 
 
 ![OpenSSL Demo](images/openssl-demo.png)
@@ -162,4 +162,5 @@ This lab successfully demonstrated:
 - Practical encryption and decryption using OpenSSL
 
 The lab provides a strong foundation for advanced penetration testing and cybersecurity analysis.
+
 
