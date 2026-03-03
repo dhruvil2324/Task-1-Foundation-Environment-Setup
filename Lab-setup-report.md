@@ -1,86 +1,164 @@
-# Lab Environment Setup
+# Lab Setup Report – Task 1
 
-To perform security testing in a safe and controlled manner, a virtual lab environment was created. This lab allows practical learning without affecting real systems.
+## Objective
 
----
-
-## 1. Installing Virtualization Software
-
-A virtualization platform is required to create and manage virtual machines.
-
-### VirtualBox
-Official Website: https://www.virtualbox.org  
-Download Page: https://www.virtualbox.org/wiki/Downloads  
-
-VirtualBox was used to create separate virtual machines for the attacker and target systems.
-
-(Alternatively, VMware Workstation Player can be used.)
-
-### VMware Workstation Player
-Official Website: https://www.vmware.com  
-Download Page: https://www.vmware.com/products/workstation-player.html
+The objective of this lab was to build a controlled cybersecurity testing environment using virtual machines and perform basic reconnaissance, traffic analysis, and encryption demonstrations in a safe and isolated network.
 
 ---
 
-## 2. Installing Kali Linux (Attacker Machine)
+# 1. Lab Architecture
 
-Kali Linux is a penetration testing operating system that comes pre-installed with security tools.
+## Virtualization Platform
+- Oracle VirtualBox
 
-Official Website: https://www.kali.org  
-Download Page: https://www.kali.org/get-kali/ 
+## Machines Used
+- Attacker Machine: Kali Linux
+- Target Machine: Metasploitable 2
 
-Configuration used:
-- RAM: 4 GB
-- CPU: 2 Cores
-- Storage: 40 GB (Dynamically Allocated)
-- Network Mode: Host-Only Adapter
+## Network Configuration
+- Host-Only Adapter
+- Both machines configured in the same subnet
 
-After installation, the system was updated using:
-
-    sudo apt update && sudo apt upgrade
-
-
-Kali Linux was used to perform scanning, analysis, and testing within the lab.
+This setup ensures isolated testing without affecting external systems.
 
 ---
 
-## 3. Installing Target Machine (Metasploitable2 / DVWA)
+# 2. IP Address Configuration
 
-A vulnerable target machine was set up to simulate real-world security weaknesses.
+## Kali Linux IP Verification
 
-### Option 1: Metasploitable2
-Metasploitable2 is a deliberately vulnerable Linux virtual machine used for penetration testing practice.
+Command used:
 
-Official Page: https://sourceforge.net/projects/metasploitable/  
+ip a
 
-### Option 2: DVWA (Damn Vulnerable Web Application)
-DVWA is a vulnerable web application designed for practicing web-based attacks such as SQL Injection and Cross-Site Scripting (XSS).
 
-Official Website: https://dvwa.co.uk  
-GitHub Repository: https://github.com/digininja/DVWA  
+![Kali IP](images/kali-ip.png)
 
-The target machine was configured on the same virtual network as Kali Linux.
+Observation:
+Kali Linux was assigned a valid IP address in the Host-Only network range.
 
 ---
 
-## 4. Configuring Private Lab Network (Host-Only Adapter)
+## Metasploitable IP Verification
 
-To ensure safe testing, a Host-Only Adapter network was configured. This setup allows communication between virtual machines without exposing them to the public internet.
+Command used:
 
-Steps performed:
-- Set both Kali Linux and the target machine to use Host-Only Adapter.
-- Verified IP addresses using:
-
-      ifconfig
-  
-- Tested connectivity using:
-
-      ping <target-ip>
-
-- Confirmed communication using:
-
-      nmap <target-ip>
+ifconfig
 
 
+![Metasploitable IP](images/metasploitable-ip.png)
 
-This configuration ensured that both machines could communicate securely within an isolated lab environment.
+Observation:
+Metasploitable was successfully configured in the same subnet as Kali Linux.
+
+---
+
+# 3. Connectivity Verification
+
+To verify communication between attacker and target:
+
+
+ping 192.168.1.15
+
+
+![Ping Test](images/ping-test.png)
+
+Observation:
+Successful ICMP replies confirmed proper network connectivity.
+
+---
+
+# 4. Network Scanning Using Nmap
+
+## Basic Port Scan
+
+
+nmap 192.168.1.15
+
+
+![Nmap Basic Scan](images/nmap-basic.png)
+
+Result:
+Multiple open ports were identified on the target machine.
+
+---
+
+## Service Version Detection
+
+
+nmap -sV 192.168.1.15
+
+
+![Nmap Version Scan](images/nmap-version.png)
+
+Observation:
+The scan revealed running services including:
+- FTP
+- SSH
+- Telnet
+- HTTP
+- MySQL
+- SMB
+
+Some services appeared outdated, indicating potential vulnerabilities.
+
+---
+
+# 5. Packet Capture Using Wireshark
+
+Wireshark was used to analyze network traffic.
+
+Filter applied:
+
+http
+
+
+![Wireshark HTTP Capture](images/wireshark-http.png)
+
+Observation:
+During a login attempt on a vulnerable web application, credentials were captured in plaintext.
+
+This demonstrates:
+- HTTP does not encrypt data.
+- HTTPS is necessary for secure communication.
+
+---
+
+# 6. Cryptography Demonstration Using OpenSSL
+
+## Step 1 – Create a File
+
+
+echo "This is a secret message for Task-1" > secret.txt
+
+
+## Step 2 – Encrypt the File
+
+
+openssl enc -aes-256-cbc -in secret.txt -out encrypted.txt
+
+
+## Step 3 – Decrypt the File
+
+
+openssl enc -aes-256-cbc -d -in encrypted.txt -out decrypted.txt
+
+
+![OpenSSL Demo](images/openssl-demo.png)
+
+Observation:
+The file was successfully encrypted and decrypted using the same key, demonstrating symmetric encryption.
+
+---
+
+# Conclusion
+
+This lab successfully demonstrated:
+
+- Setup of an isolated cybersecurity testing environment
+- Verification of network communication between machines
+- Service enumeration using Nmap
+- Traffic analysis using Wireshark
+- Practical encryption and decryption using OpenSSL
+
+The lab provides a strong foundation for advanced penetration testing and cybersecurity analysis.
