@@ -82,4 +82,5 @@ Steps performed:
       nmap <target-ip>
 
 
+
 This configuration ensured that both machines could communicate securely within an isolated lab environment.
