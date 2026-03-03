@@ -29,7 +29,7 @@ This setup ensures isolated testing without affecting external systems.
 
 Command used:
 
-ip a
+    ip a
 
 
 ![Kali IP](images/kali-ip.png)
@@ -162,6 +162,7 @@ This lab successfully demonstrated:
 - Practical encryption and decryption using OpenSSL
 
 The lab provides a strong foundation for advanced penetration testing and cybersecurity analysis.
+
 
 
 
