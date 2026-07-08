@@ -1,4 +1,4 @@
-# Task 1 – Foundation & Environment Setup
+# Foundation & Environment Setup
 
 ## Overview
 
